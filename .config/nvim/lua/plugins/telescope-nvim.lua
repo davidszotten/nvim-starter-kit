@@ -22,6 +22,11 @@ return {
         vertical = {
           width = 0.75
         }
+      },
+      mappings = {
+        i = {
+           ["<esc>"] = function(...) require("telescope.actions").close(...) end,
+          },
       }
     }
   }

@@ -27,12 +27,9 @@ return {
         -- "bashls", # requires npm to be installed
         -- "cssls", # requires npm to be installed
         -- "html", # requires npm to be installed
-        "gradle_ls",
-        "groovyls",
         "lua_ls",
         -- "intelephense", # requires npm to be installed
         -- "jsonls", # requires npm to be installed
-        "lemminx",
         "marksman",
         "quick_lint_js",
         -- "tsserver", # requires npm to be installed
