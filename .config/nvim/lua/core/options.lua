@@ -1,10 +1,20 @@
 local opt = vim.opt
 
 -- Session Management
-opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
- --Line Numbers
-opt.relativenumber = true
+-- backups
+opt.undofile = true
+opt.undodir = vim.fn.expand("~/.vim/tmp/undo/")
+opt.backupdir = vim.fn.expand("~/.vim/tmp/backup/")
+opt.backup = true
+opt.swapfile = false
+
+-- Skip the splash screen
+opt.shortmess:append({ I = true })
+
+--Line Numbers
+-- opt.relativenumber = true
 opt.number = true
 
 -- Tabs & Indentation
@@ -14,17 +24,23 @@ opt.expandtab = true
 opt.autoindent = true
 vim.bo.softtabstop = 4
 
+-- allow block selecting beyond eol
+opt.virtualedit = "block"
+
 -- Search Settings
 opt.ignorecase = true
 opt.smartcase = true
+opt.gdefault = true
+-- opt.hlsearch = false
 
 -- Cursor Line
-opt.cursorline = true
+-- opt.cursorline = true
 
 
 -- bash style tab completion for finding files
 opt.wildmenu = true
 opt.wildmode = "list:longest"
+opt.wildignore:append("__pycache__")
 
 -- Appearance
 opt.termguicolors = true
@@ -32,17 +48,19 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 
 opt.list = true
-opt.listchars = {tab="▸ ", trail="·"}
+opt.listchars = { tab = "▸ ", trail = "·" }
+
+-- always show tab bar
+opt.showtabline = 2
 
 
-
-opt.synmaxcol=200  -- default is 3000
+opt.synmaxcol = 200 -- default is 3000
 
 -- Backspace
 opt.backspace = "indent,eol,start"
 
 -- Clipboard
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus")
 
 -- Split Windows
 opt.splitright = true
@@ -59,3 +77,13 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 
+-- i prefer full screen help
+vim.cmd("cabbrev help tab help")
+
+-- autoformat on save
+vim.api.nvim_create_autocmd({ "BufWritePre", }, {
+    pattern = { "*.py", "*.rs", "*.[jt]sx?", "*.lua" },
+    callback = function(ev)
+        vim.lsp.buf.format({ async = false })
+    end
+})
