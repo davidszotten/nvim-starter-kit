@@ -5,88 +5,90 @@
 -- highlight other matches with underlines to not lose track of the cursor
 -- TODO: somewhere better to do this?
 vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = "*",
-	callback = function()
-        vim.api.nvim_set_hl(0, "Search", { ctermbg=nil, ctermfg=nil, underline=true })
+    pattern = "*",
+    callback = function()
+        -- vim.api.nvim_set_hl(0, "Search", {})
+        vim.api.nvim_set_hl(0, "CurSearch", { underline = true })
+        vim.api.nvim_set_hl(0, 'Cursor', { reverse = true })
     end
 })
 
 
 return {
-   -- https://github.com/maxmx03/solarized.nvim
-   'maxmx03/solarized.nvim',
-   --'altercation/vim-colors-solarized',
-   -- 'lifepillar/vim-solarized8',
-   lazy = false, -- We want the colorscheme to load immediately when starting Neovim
-   priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
-   config = function()
-     vim.o.background = 'dark'
-     vim.cmd("colorscheme solarized")
-   end,
---    opts = {
---      -- Replace this with your scheme-specific settings or remove to use the defaults
---      -- transparent = true,
---      background = {
---        -- light = "lotus",
---        dark = "wave", -- "wave, dragon"
---     },
---     colors = {
---       palette = {
---         -- Background colors
---         sumiInk0 = "#161616", -- modified
---         sumiInk1 = "#181818", -- modified
---         sumiInk2 = "#1a1a1a", -- modified
---         sumiInk3 = "#1F1F1F", -- modified
---         sumiInk4 = "#2A2A2A", -- modified
---         sumiInk5 = "#363636", -- modified
---         sumiInk6 = "#545454", -- modified
--- 
---         -- Popup and Floats
---         waveBlue1 = "#322C47", -- modified
---         waveBlue2 = "#4c4464", -- modified
--- 
---         -- Diff and Git
---         winterGreen = "#2B3328",
---         winterYellow = "#49443C",
---         winterRed = "#43242B",
---         winterBlue = "#252535",
---         autumnGreen = "#76A56A", -- modified
---         autumnRed = "#C34043",
---         autumnYellow = "#DCA561",
--- 
---         -- Diag
---         samuraiRed = "#E82424",
---         roninYellow = "#FF9E3B",
---         waveAqua1 = "#7E9CD8", -- modified
---         dragonBlue = "#7FB4CA", -- modified
--- 
---         -- Foreground and Comments
---         oldWhite = "#C8C093",
---         fujiWhite = "#F9E7C0", -- modified
---         fujiGray = "#727169",
---         oniViolet = "#BFA3E6", -- modified
---         oniViolet2 = "#BCACDB", -- modified
---         crystalBlue = "#8CABFF", -- modified
---         springViolet1 = "#938AA9",
---         springViolet2 = "#9CABCA",
---         springBlue = "#7FC4EF", -- modified
---         waveAqua2 = "#77BBDD", -- modified
--- 
---         springGreen = "#98BB6C",
---         boatYellow1 = "#938056",
---         boatYellow2 = "#C0A36E",
---         carpYellow = "#FFEE99", -- modified
--- 
---         sakuraPink = "#D27E99",
---         waveRed = "#E46876",
---         peachRed = "#FF5D62",
---         surimiOrange = "#FFAA44", -- modified
---         katanaGray = "#717C7C",
---       },
---     },
---   },
+    -- https://github.com/maxmx03/solarized.nvim
+    'maxmx03/solarized.nvim',
+    --'altercation/vim-colors-solarized',
+    -- 'lifepillar/vim-solarized8',
+    lazy = false,    -- We want the colorscheme to load immediately when starting Neovim
+    priority = 1000, -- Load the colorscheme before other non-lazy-loaded plugins
+    config = function()
+        vim.o.background = 'dark'
+        vim.cmd("colorscheme solarized")
+    end,
+    --    opts = {
+    --      -- Replace this with your scheme-specific settings or remove to use the defaults
+    --      -- transparent = true,
+    --      background = {
+    --        -- light = "lotus",
+    --        dark = "wave", -- "wave, dragon"
+    --     },
+    --     colors = {
+    --       palette = {
+    --         -- Background colors
+    --         sumiInk0 = "#161616", -- modified
+    --         sumiInk1 = "#181818", -- modified
+    --         sumiInk2 = "#1a1a1a", -- modified
+    --         sumiInk3 = "#1F1F1F", -- modified
+    --         sumiInk4 = "#2A2A2A", -- modified
+    --         sumiInk5 = "#363636", -- modified
+    --         sumiInk6 = "#545454", -- modified
+    --
+    --         -- Popup and Floats
+    --         waveBlue1 = "#322C47", -- modified
+    --         waveBlue2 = "#4c4464", -- modified
+    --
+    --         -- Diff and Git
+    --         winterGreen = "#2B3328",
+    --         winterYellow = "#49443C",
+    --         winterRed = "#43242B",
+    --         winterBlue = "#252535",
+    --         autumnGreen = "#76A56A", -- modified
+    --         autumnRed = "#C34043",
+    --         autumnYellow = "#DCA561",
+    --
+    --         -- Diag
+    --         samuraiRed = "#E82424",
+    --         roninYellow = "#FF9E3B",
+    --         waveAqua1 = "#7E9CD8", -- modified
+    --         dragonBlue = "#7FB4CA", -- modified
+    --
+    --         -- Foreground and Comments
+    --         oldWhite = "#C8C093",
+    --         fujiWhite = "#F9E7C0", -- modified
+    --         fujiGray = "#727169",
+    --         oniViolet = "#BFA3E6", -- modified
+    --         oniViolet2 = "#BCACDB", -- modified
+    --         crystalBlue = "#8CABFF", -- modified
+    --         springViolet1 = "#938AA9",
+    --         springViolet2 = "#9CABCA",
+    --         springBlue = "#7FC4EF", -- modified
+    --         waveAqua2 = "#77BBDD", -- modified
+    --
+    --         springGreen = "#98BB6C",
+    --         boatYellow1 = "#938056",
+    --         boatYellow2 = "#C0A36E",
+    --         carpYellow = "#FFEE99", -- modified
+    --
+    --         sakuraPink = "#D27E99",
+    --         waveRed = "#E46876",
+    --         peachRed = "#FF5D62",
+    --         surimiOrange = "#FFAA44", -- modified
+    --         katanaGray = "#717C7C",
+    --       },
+    --     },
+    --   },
 }
--- 
+--
 -- -- Kanagawa Theme (Original)
 -- -- return {
 -- --   -- https://github.com/rebelot/kanagawa.nvim
@@ -106,7 +108,7 @@ return {
 -- --     vim.cmd("colorscheme kanagawa") -- Replace this with your favorite colorscheme
 -- --   end
 -- -- }
--- 
+--
 -- -- Tokyo Night Theme
 -- -- return {
 -- --   -- https://github.com/folke/tokyonight.nvim
@@ -123,7 +125,7 @@ return {
 -- --     vim.cmd("colorscheme tokyonight") -- Replace this with your favorite colorscheme
 -- --   end
 -- -- }
--- 
+--
 -- -- Catppuccin Theme
 -- -- return {
 -- --   -- https://github.com/catppuccin/nvim
@@ -141,7 +143,7 @@ return {
 -- --     vim.cmd("colorscheme catppuccin") -- Replace this with your favorite colorscheme
 -- --   end
 -- -- }
--- 
+--
 -- -- Sonokai Theme
 -- -- return {
 -- --   -- https://github.com/sainnhe/sonokai
@@ -153,7 +155,7 @@ return {
 -- --     vim.cmd("colorscheme sonokai") -- Replace this with your favorite colorscheme
 -- --   end
 -- -- }
--- 
+--
 -- -- One Nord Theme
 -- -- return {
 -- --   -- https://github.com/rmehri01/onenord.nvim
@@ -164,5 +166,5 @@ return {
 -- --     vim.cmd("colorscheme onenord") -- Replace this with your favorite colorscheme
 -- --   end
 -- -- }
--- 
--- 
+--
+--
