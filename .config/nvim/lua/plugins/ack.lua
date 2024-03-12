@@ -5,6 +5,6 @@ return {
     -- cmd =  "Ack" ,
     build = ":Ack",
     init = function()
-        vim.g.ackprg =  'rg --vimgrep --no-heading --smart-case --hidden --follow --glob "!.git/*"'
+        vim.g.ackprg = 'rg --vimgrep --no-heading --smart-case --hidden --follow --glob "!.git/*"'
     end,
 }
