@@ -87,3 +87,22 @@ vim.api.nvim_create_autocmd({ "BufWritePre", }, {
         vim.lsp.buf.format({ async = false })
     end
 })
+
+
+-- https://stackoverflow.com/questions/15429236/how-to-check-if-a-module-exists-in-lua
+function isModuleAvailable(name)
+    if package.loaded[name] then
+        return true
+    else
+        for _, searcher in ipairs(package.searchers or package.loaders) do
+            local loader = searcher(name)
+            if type(loader) == 'function' then
+                package.preload[name] = loader
+                return true
+            end
+        end
+        return false
+    end
+end
+
+if isModuleAvailable("core.local_options") then require("core.local_options") end
